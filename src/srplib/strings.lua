@@ -19,6 +19,7 @@ function strings.has_prefix(str, prefix)
     end
     return string.sub(str, 1, #prefix) == prefix
 end
+
 function strings.trim_right(str, substr)
     -- assert(substr ~= nil, "Trim char must not be nil or empty")
 
