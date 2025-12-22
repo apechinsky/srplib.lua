@@ -18,24 +18,26 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
-    - name: Setup ‘lua’
-      uses: leafo/gh-actions-lua@v9
+    - name: Setup Lua
+      uses: leafo/gh-actions-lua@v12
       with:
         luaVersion: ${{ matrix.version }}
 
-    - name: Setup ‘luarocks’
-      uses: leafo/gh-actions-luarocks@v4
+    - name: Setup LuaRocks
+      uses: leafo/gh-actions-luarocks@v7
 
     - name: Cache Lua machinery
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: |
           .install
           .lua
           .luarocks
         key: lua-${{ matrix.version }}-${{ hashFiles('*.rockspec') }}
+        restore-keys: |
+          lua-${{ matrix.version }}-
 
     - name: Install dependencies
       run: |

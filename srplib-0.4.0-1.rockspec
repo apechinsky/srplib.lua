@@ -31,6 +31,7 @@ build = {
    type = "builtin",
    modules = {
       ["srplib.path"] = "src/srplib/path.lua",
-      ["srplib.strings"] = "src/srplib/strings.lua"
+      ["srplib.strings"] = "src/srplib/strings.lua",
+      ["srplib.name"] = "src/srplib/name.lua"
    }
 }
