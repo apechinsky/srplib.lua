@@ -1,7 +1,7 @@
 local strings = {}
 
 --
--- Checks if string has specified prefix
+-- Checks if string has specified suffix
 --
 -- @param str string to test
 -- @param suffix suffix
@@ -13,6 +13,12 @@ function strings.has_suffix(str, suffix)
     return string.sub(str, #str - #suffix + 1, #str) == suffix
 end
 
+--
+-- Checks if string has specified prefix
+--
+-- @param str string to test
+-- @param suffix suffix affix
+--
 function strings.has_prefix(str, prefix)
     if str == nil then
         return prefix == nil
