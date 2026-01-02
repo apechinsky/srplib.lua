@@ -16,3 +16,9 @@ jobs:
         uses: nvim-neorocks/luarocks-tag-release@v7
         env:
           LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
+        with:
+          summary: A collection of lightweight and highly specialized libraries for lua.
+          description: |
+            A collection of lightweight and highly specialized libraries for lua.
+            Lua port of Java libraries https://github.com/apechinsky/srplib.
+          name: srplib
