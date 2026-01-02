@@ -11,8 +11,6 @@ Lua port of Java libraries https://github.com/apechinsky/srplib.
 Clone/download it locally and change the references to `my_user`, `my_library`
 accordingly to your new library name.
 
-You'll need to install [Lua][lua] and [LuaRocks][luarocks].
-
 ## Testing
 
 This uses [busted][busted], [luassert][luassert] and
