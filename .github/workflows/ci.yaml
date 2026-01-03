@@ -15,7 +15,9 @@ jobs:
       - uses: leafo/gh-actions-lua@v10
       - uses: leafo/gh-actions-luarocks@v4
 
-      - run: luarocks install busted luacheck matcher_combinators
+      - run: luarocks install busted
+      - run: luarocks install luacheck
+      - run: luarocks install matcher_combinators
       - run: busted
 
   release:
