@@ -1,14 +1,27 @@
-name: LuaRocks release
+name: CI
+
 on:
   push:
-    tags: # Will upload to luarocks.org when a tag is pushed
-      - "v*"
-  pull_request: # Will test a local install without uploading to luarocks.org
+    branches: [ main ]
+    tags: [ "v*" ]
+  pull_request:
 
 jobs:
-  luarocks-release:
+  test:
     runs-on: ubuntu-latest
-    name: LuaRocks upload
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: leafo/gh-actions-lua@v10
+      - uses: leafo/gh-actions-luarocks@v4
+
+      - run: luarocks install busted
+      - run: busted
+
+  release:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,8 +30,8 @@ jobs:
         env:
           LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
         with:
+          name: srplib
           summary: A collection of lightweight and highly specialized libraries for lua.
-          description: |
+          detailed_description: |
             A collection of lightweight and highly specialized libraries for lua.
             Lua port of Java libraries https://github.com/apechinsky/srplib.
-          name: srplib
