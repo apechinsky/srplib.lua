@@ -1,11 +1,11 @@
 local strings = {}
 
---
--- Checks if string has specified suffix
---
--- @param str string to test
--- @param suffix suffix
---
+---
+--- Checks if string has specified suffix
+---
+--- @param str string to test
+--- @param suffix suffix
+---
 function strings.has_suffix(str, suffix)
     if str == nil then
         return suffix == nil
@@ -13,12 +13,12 @@ function strings.has_suffix(str, suffix)
     return string.sub(str, #str - #suffix + 1, #str) == suffix
 end
 
---
--- Checks if string has specified prefix
---
--- @param str string to test
--- @param suffix suffix affix
---
+---
+--- Checks if string has specified prefix
+---
+--- @param str string to test
+--- @param suffix suffix affix
+---
 function strings.has_prefix(str, prefix)
     if str == nil then
         return prefix == nil
@@ -26,6 +26,13 @@ function strings.has_prefix(str, prefix)
     return string.sub(str, 1, #prefix) == prefix
 end
 
+---
+--- Trims specified substring from the right side of the string
+---
+--- @param str string to trim
+--- @param substr substring to trim
+--- @return trimmed string
+---
 function strings.trim_right(str, substr)
     -- assert(substr ~= nil, "Trim char must not be nil or empty")
 
@@ -40,6 +47,13 @@ function strings.trim_right(str, substr)
     return result
 end
 
+---
+--- Trims specified substring from the left side of the string
+---
+--- @param str string to trim
+--- @param substr substring to trim
+--- @return trimmed string
+---
 function strings.trim_left(str, substr)
     if str == nil or substr == nil or substr == '' then
         return str
