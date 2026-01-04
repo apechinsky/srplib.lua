@@ -1,61 +1,52 @@
-srplib.lua
-===
-[![Integration][integration-badge]][integration-runs]
-[![LuaRocks][luarocks-badge]][luarocks-packages]
+# srplib
 
 A collection of lightweight and highly specialized libraries for lua.
 Lua port of Java libraries https://github.com/apechinsky/srplib.
 
-## Using
+## Modules
 
-Clone/download it locally and change the references to `my_user`, `my_library`
-accordingly to your new library name.
+* srplib.path - General purpose path library
+* srplib.name - Converts name between different naming schemas.
+* srplib.strings
 
-## Testing
+### srplib.path
 
-This uses [busted][busted], [luassert][luassert] and
-[matcher_combinators][matcher_combinators] to define tests in `spec/` directory.
-To run them just execute
+General purpose path library (classpath, filesystem path, URL, etc.)
+Provides common operations on paths, such as joining, normalizing, extracting components, etc.
+Provides predictable behavior independent of trailing slashes or other edge cases.
 
-```bash
-$ luarocks test --local
+```
+local path = Path.parse('ab/cd/hello', '/')
+path:parent() --> 'ab/cd'
+path:child('world') --> 'ab/cd/hello/world'
+path:sibling('bye') --> 'ab/cd/bye'
+path:relative('ab/cd') --> 'hello'
+path:relative('ab/cd/hello', 'ef') -> 'ef/../ab/cd/hello'
 ```
 
-If you have [entr(1)][entr] installed you may use it to run all tests whenever a
-file is changed using:
 
-```bash
-$ find spec/ src/ -name '*.lua' | entr luarocks test --local
+### srplib.name
+
+Converts name between different naming schemas:
+* camelCase
+* PascalCase
+* snake_case
+* kebab-case
+* etc.
+
 ```
+local Name = require("srplib.name")
+local myvar = Name.parse("some_variable_name")
+myvar:kebab() --> "some-variable-name"
+myvar:camel() --> "someVariableName"
+```
+
+### srplib.strings
 
 ## Publishing
-
-Your library must be hosted on [github][github] before making the first release.
-First, create a LuaRocks account and generate [a new API key][luarocks-key].
-This key must be used *exclusively* by the `release` [Github Action][release],
-so copy and add it to the Secrets of your repo under the name `LUAROCKS_KEY`.
-
-For the first release you just need to run the following commands:
 
 ```bash
 $ git tag v0.1.0
 $ git push --tags
 ```
 
-For the next releases remember that you'll need to modify and copy/rename the
-`.rockspec` file to reflect the new version.
-
-[lua]: https://www.lua.org/
-[entr]: https://eradman.com/entrproject/
-[github]: https://github.com/
-[luarocks]: https://luarocks.org/
-[luarocks-key]: https://luarocks.org/settings/api-keys
-[busted]: https://olivinelabs.com/busted/
-[luassert]: https://github.com/Olivine-Labs/luassert
-[matcher_combinators]: https://github.com/m00qek/matcher_combinators.lua
-[release]: .github/workflows/release.yaml
-
-[integration-badge]: https://github.com/m00qek/library-template.lua/actions/workflows/integration.yml/badge.svg
-[integration-runs]: https://github.com/m00qek/library-template.lua/actions/workflows/integration.yml
-[luarocks-badge]: https://img.shields.io/luarocks/v/m00qek/my_library?style=plastic
-[luarocks-packages]: https://luarocks.org/modules/m00qek/my_library

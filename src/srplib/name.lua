@@ -1,5 +1,7 @@
 --
--- Name conversion class.
+-- Name conversion.
+--
+-- Converts between different naming schemes.
 --
 -- Parses an arbitrary name and converts it to different naming schemes:
 -- * kebab-case
@@ -82,7 +84,7 @@ end
 ---
 --- Returns name in kebab-case
 ---
---- @param result case (default: false)
+--- @param upper boolean result in uppper case (default: false)
 ---  true - convert to uppercase
 ---  false - convert to lower case
 ---
@@ -96,7 +98,7 @@ end
 ---
 --- Returns name in snake_case
 ---
---- @param result case (default: false)
+--- @param upper boolean result in uppper case (default: false)
 ---  true - convert to uppercase
 ---  false - convert to lower case
 ---
@@ -117,7 +119,7 @@ function Name:pascal()
 end
 
 ---
---- Returns name in camelCase
+--- @return string name in camelCase
 ---
 function Name:camel()
     local result = self:pascal()
@@ -125,7 +127,7 @@ function Name:camel()
 end
 
 ---
---- Returns string representation of the name
+--- @return string a string representation of the name
 ---
 function Name:tostring()
     return table.concat(self.segments, '.')
@@ -134,8 +136,8 @@ end
 ---
 --- Capitalize given string
 ---
---- @param source string
---- @return first letter to upper case, other letters as is
+--- @param string string
+--- @return string letter to upper case, other letters as is
 ---
 function Name.capitalize(string)
     return string:sub(1,1):upper() .. string:sub(2)
@@ -144,8 +146,8 @@ end
 ---
 --- Uncapitalize given string
 ---
---- @param source string
---- @return first latter in lower case + other letters as is
+--- @param string string an arbitrary string
+--- @return string first latter in lower case + other letters as is
 ---
 function Name.uncapitalize(string)
     return string:sub(1,1):lower() .. string:sub(2)

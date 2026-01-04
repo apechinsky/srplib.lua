@@ -40,6 +40,11 @@ describe("Path.parse", function()
         assert.are.same({'ab', 'cd'}, path.segments)
     end)
 
+    it("trailing separator does not count", function ()
+        local path = Path.parse('ab.cd.hello.', '.')
+        assert.are.same({'ab', 'cd', 'hello'}, path.segments)
+    end)
+
     it("three segments path", function ()
         local path = Path.parse('ab.cd.hello', '.')
         assert.are.same({'ab', 'cd', 'hello'}, path.segments)
@@ -234,5 +239,4 @@ describe("Path.relative", function ()
     it("Non-child relation without common segments", function ()
         assertRelative('a/b/c', 'd/e/f', 'd/e/f/../../../a/b/c')
     end)
-
 end)
