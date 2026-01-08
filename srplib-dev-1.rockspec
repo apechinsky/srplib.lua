@@ -1,5 +1,5 @@
 package = "srplib"
-version = "0.1.0-1"
+version = "dev-1"
 
 rockspec_format = "3.0"
 
@@ -13,7 +13,7 @@ description = {
 }
 
 dependencies = {
-   "lua >= 5.1"
+   "lua == 5.1"
 }
 
 test_dependencies = {

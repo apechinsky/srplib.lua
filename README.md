@@ -16,7 +16,10 @@ Provides common operations on paths, such as joining, normalizing, extracting co
 Provides predictable behavior independent of trailing slashes or other edge cases.
 
 ```
+local Path = require("srplib.path")
+
 local path = Path.parse('ab/cd/hello', '/')
+
 path:parent() --> 'ab/cd'
 path:child('world') --> 'ab/cd/hello/world'
 path:sibling('bye') --> 'ab/cd/bye'
